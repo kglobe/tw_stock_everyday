@@ -10,6 +10,7 @@
             font-family: Arial, sans-serif;
             display: flex;
             height: 100vh;
+            overflow: hidden;
         }
         .sidebar {
             width: 200px;
@@ -22,9 +23,14 @@
             border-right: 1px solid #ddd;
             display: flex;
             flex-direction: column;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        .sidebar.closed {
+            transform: translateX(-100%);
         }
         .sidebar .menu {
-            flex-grow: 1; /* 讓選單佔據剩餘空間 */
+            flex-grow: 1;
         }
         .sidebar #updateTime {
             padding: 10px;
@@ -32,47 +38,91 @@
             color: #666;
             border-top: 1px solid #ddd;
             margin-top: 10px;
-            margin-bottom: 20px; /* 新增底部間距，將更新時間往上移 */
+            margin-bottom: 20px;
         }
-        .sidebar a {
+        .sidebar a, .sidebar .toggle-btn {
             display: block;
             padding: 10px;
             text-decoration: none;
             color: #333;
             cursor: pointer;
         }
-        .sidebar a:hover {
+        .sidebar a:hover, .sidebar .toggle-btn:hover {
             background-color: #ddd;
         }
         .content {
             flex: 1;
             padding: 20px;
             margin-left: 240px;
+            transition: margin-left 0.3s ease;
+        }
+        .content.full {
+            margin-left: 0;
         }
         iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
+        .toggle-btn-outside {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            display: none;
+            font-size: 18px; /* 稍微放大 ☰ 符號 */
+        }
+        .sidebar.closed + .content .toggle-btn-outside {
+            display: block;
+        }
+        /* 手機端樣式 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 150px;
+            }
+            .content {
+                margin-left: 0;
+            }
+            .sidebar:not(.closed) + .content {
+                margin-left: 170px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
+        <div class="toggle-btn" onclick="toggleSidebar()">☰ 選單</div>
         <div class="menu">
             <a onclick="changePage('2025022108_青龍.html')">青龍</a>
             <a onclick="changePage('2025022108_朱雀.html')">朱雀</a>
             <a onclick="changePage('2025022108_白虎.html')">白虎</a>
             <a onclick="changePage('2025022108_玄武.html')">玄武</a>
         </div>
-        <div id="updateTime">最後更新: <span id="time">2025/02/21 08:10</span></div>
+        <div id="updateTime">最後更新: <span id="time">2025/02/21 21:49</span></div>
     </div>
-    <div class="content">
+    <div class="content" id="content">
+        <div class="toggle-btn-outside" onclick="toggleSidebar()">☰</div>
         <iframe id="contentFrame" src="2025022108_青龍.html"></iframe>
     </div>
 
     <script>
         function changePage(pageUrl) {
             document.getElementById('contentFrame').src = pageUrl;
+            // 手機端點擊後自動收起側欄
+            if (window.innerWidth <= 768) {
+                toggleSidebar();
+            }
+        }
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const content = document.getElementById('content');
+            sidebar.classList.toggle('closed');
+            content.classList.toggle('full');
         }
     </script>
 </body>
