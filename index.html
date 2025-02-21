@@ -68,17 +68,23 @@
             position: fixed;
             top: 10px;
             left: 10px;
-            padding: 10px;
+            width: 40px; /* 固定寬度 */
+            height: 40px; /* 固定高度 */
             background-color: #f4f4f4;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 50%; /* 圓形效果 */
             cursor: pointer;
             z-index: 1001;
             display: none;
-            font-size: 18px; /* 稍微放大 ☰ 符號 */
+            font-size: 18px;
+            text-align: center; /* 水平置中 ☰ */
+            line-height: 40px; /* 垂直置中 ☰ */
         }
         .sidebar.closed + .content .toggle-btn-outside {
             display: block;
+        }
+        .toggle-btn-outside:hover {
+            background-color: #ddd; /* 懸停效果 */
         }
         /* 手機端樣式 */
         @media (max-width: 768px) {
@@ -96,7 +102,7 @@
 </head>
 <body>
     <div class="sidebar" id="sidebar">
-        <div class="toggle-btn" onclick="toggleSidebar()">☰ 選單</div>
+        <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
         <div class="menu">
             <a onclick="changePage('2025022108_青龍.html')">青龍</a>
             <a onclick="changePage('2025022108_朱雀.html')">朱雀</a>
