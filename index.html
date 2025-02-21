@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左側欄切換頁面</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            border-right: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar .menu {
+            flex-grow: 1; /* 讓選單佔據剩餘空間 */
+        }
+        .sidebar #updateTime {
+            padding: 10px;
+            font-size: 14px;
+            color: #666;
+            border-top: 1px solid #ddd;
+            margin-top: 10px;
+            margin-bottom: 20px; /* 新增底部間距，將更新時間往上移 */
+        }
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 240px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="menu">
+            <a onclick="changePage('2025022108_青龍.html')">青龍</a>
+            <a onclick="changePage('2025022108_朱雀.html')">朱雀</a>
+            <a onclick="changePage('2025022108_白虎.html')">白虎</a>
+            <a onclick="changePage('2025022108_玄武.html')">玄武</a>
+        </div>
+        <div id="updateTime">最後更新: <span id="time">2025/02/21 08:10</span></div>
+    </div>
+    <div class="content">
+        <iframe id="contentFrame" src="2025022108_青龍.html"></iframe>
+    </div>
+
+    <script>
+        function changePage(pageUrl) {
+            document.getElementById('contentFrame').src = pageUrl;
+        }
+    </script>
+</body>
+</html>
