@@ -43,19 +43,25 @@
         }
         .sidebar a, .sidebar .toggle-btn {
             display: flex;
-            align-items: center; /* 圖示與文字垂直對齊 */
+            align-items: center;
             padding: 10px;
             text-decoration: none;
             color: #333;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         .sidebar a img {
-            width: 20px; /* 圖示大小 */
+            width: 20px;
             height: 20px;
-            margin-right: 10px; /* 圖示與文字間距 */
+            margin-right: 10px;
         }
         .sidebar a:hover, .sidebar .toggle-btn:hover {
             background-color: #ddd;
+        }
+        .sidebar a.active {
+            background-color: #4a4f54;
+            color: white;
+            border-radius: 5px;
         }
         .content {
             flex: 1;
@@ -93,7 +99,6 @@
         .toggle-btn-outside:hover {
             background-color: #ddd;
         }
-        /* 手機端樣式 */
         @media (max-width: 768px) {
             .sidebar {
                 width: 150px;
@@ -111,31 +116,41 @@
 <div class="sidebar" id="sidebar">
 <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
 <div class="menu">
-<a onclick="changePage('青龍.html')"><img alt="青龍" src="png3/dragon.png"/>青龍</a>
-<a onclick="changePage('朱雀.html')"><img alt="朱雀" src="png3/bird.png"/>朱雀</a>
-<a onclick="changePage('白虎.html')"><img alt="白虎" src="png3/tiger.png"/>白虎</a>
-<a onclick="changePage('玄武.html')"><img alt="玄武" src="png3/turtle.png"/>玄武</a>
+<a onclick="changePage('青龍.html', this)"><img alt="青龍" src="png3/dragon.png"/>青龍</a>
+<a onclick="changePage('朱雀.html', this)"><img alt="朱雀" src="png3/bird.png"/>朱雀</a>
+<a onclick="changePage('白虎.html', this)"><img alt="白虎" src="png3/tiger.png"/>白虎</a>
+<a onclick="changePage('玄武.html', this)"><img alt="玄武" src="png3/turtle.png"/>玄武</a>
 </div>
-<div id="updateTime">最後更新: <span id="time">2025/02/23 22:45</span></div>
+<div id="updateTime">最後更新: <span id="time">2025/02/24 08:02</span></div>
 </div>
 <div class="content" id="content">
 <div class="toggle-btn-outside" onclick="toggleSidebar()">☰</div>
 <iframe id="contentFrame" src="青龍.html"></iframe>
 </div>
 <script>
-        function changePage(pageUrl) {
-            document.getElementById('contentFrame').src = pageUrl;
-            // 手機端點擊後自動收起側欄
-            if (window.innerWidth <= 768) {
-                toggleSidebar();
-            }
+    function changePage(pageUrl, element) {
+        document.getElementById('contentFrame').src = pageUrl;
+        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+        element.classList.add('active');
+        if (window.innerWidth <= 768) {
+            toggleSidebar();
         }
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const content = document.getElementById('content');
-            sidebar.classList.toggle('closed');
-            content.classList.toggle('full');
+    }
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+        sidebar.classList.toggle('closed');
+        content.classList.toggle('full');
+    }
+
+    // 頁面加載時設定初始選項
+    document.addEventListener("DOMContentLoaded", function() {
+        const initialLink = document.querySelector(".sidebar a");
+        if (initialLink) {
+            initialLink.classList.add("active");
         }
-    </script>
+    });
+</script>
 </body>
 </html>
