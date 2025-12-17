@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>策略條件</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a4f54;
+            margin-bottom: 30px;
+        }
+
+        .strategy-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-top: 5px solid #666;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .conditions-code {
+            font-family: Consolas, monospace;
+            font-size: 0.85em;
+            color: #e83e8c;
+            background-color: #f8f9fa;
+            padding: 5px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: block;
+            word-break: break-all;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+
+        /* Card border colors for distinction */
+        .card.dragon {
+            border-top-color: #2ecc71;
+        }
+
+        /* Green */
+        .card.bird {
+            border-top-color: #e74c3c;
+        }
+
+        /* Red */
+        .card.tiger {
+            border-top-color: #f1c40f;
+        }
+
+        /* Yellow/White */
+        .card.turtle {
+            border-top-color: #34495e;
+        }
+
+        /* Black/Dark */
+        .card.cheetah {
+            border-top-color: #e67e22;
+        }
+
+        /* Orange */
+        .card.bull {
+            border-top-color: #27ae60;
+        }
+
+        /* Dark Green */
+        .card.cat {
+            border-top-color: #9b59b6;
+        }
+
+        /* Purple */
+        .card.owl {
+            border-top-color: #95a5a6;
+        }
+
+        /* Grey */
+    </style>
+</head>
+
+<body>
+
+    <h1>策略條件一覽</h1>
+
+    <div class="strategy-container">
+        <!-- 青龍 -->
+        <div class="card dragon">
+            <h2>青龍 <img alt="青龍" src="png3/dragon.png" height="25" /></h2>
+            <span class="conditions-code">('條件01', '條件02', '條件03', '條件04', '條件05', '條件06', '條件07', '條件08',
+                '條件09')</span>
+            <ul>
+                <li>近10日內有1日以上的股價創前250日新高</li>
+                <li>營收累積年增率10%</li>
+                <li>5 SMA > 30 SMA</li>
+                <li>稅後淨利率近5年平均 > 5%</li>
+                <li>營業利益創近4季新高</li>
+                <li>上個月營收大於0</li>
+                <li>近12個月營收MOM大於-50%，至少10次</li>
+                <li>obv上升</li>
+                <li>近10日內有1日股價創120日新高</li>
+            </ul>
+        </div>
+
+        <!-- 朱雀 -->
+        <div class="card bird">
+            <h2>朱雀 <img alt="朱雀" src="png3/bird.png" height="25" /></h2>
+            <span class="conditions-code">('條件01', '條件03', '條件04', '條件05', '條件07', '條件08', '條件10', '條件11', '條件12',
+                '條件14')</span>
+            <ul>
+                <li>近10日內有1日以上的股價創前250日新高</li>
+                <li>5 SMA > 30 SMA</li>
+                <li>稅後淨利率近5年平均 > 5%</li>
+                <li>營業利益創近4季新高</li>
+                <li>近12個月營收MOM大於-50%，至少10次</li>
+                <li>obv上升</li>
+                <li>營業毛利成長率較2季前高</li>
+                <li>董監持股比例目前大於10%</li>
+                <li>營業毛利成長率連1季成長</li>
+            </ul>
+        </div>
+
+        <!-- 白虎 -->
+        <div class="card tiger">
+            <h2>白虎 <img alt="白虎" src="png3/tiger.png" height="25" /></h2>
+            <span class="conditions-code">('條件45', '條件46', '條件76')</span>
+            <ul>
+                <li>自由現金流 > 0</li>
+                <li>近營收3個月ma > 營收12個月ma</li>
+                <li>按攤銷後成本衡量之金融資產_流動_rolling_std_40-above_than_industry_percentile_70</li>
+            </ul>
+        </div>
+
+        <!-- 玄武 -->
+        <div class="card turtle">
+            <h2>玄武 <img alt="玄武" src="png3/turtle.png" height="25" /></h2>
+            <span class="conditions-code">('條件01', '條件14', '條件22', '條件31')</span>
+            <ul>
+                <li>近10日內有1日以上的股價創前250日新高</li>
+                <li>近四季營運現金流大於經常稅後淨利</li>
+                <li>過去120天上漲天數 > 下跌天數</li>
+                <li>租賃負債─流動為同產業前10%</li>
+            </ul>
+        </div>
+
+        <!-- 獵豹 -->
+        <div class="card cheetah">
+            <h2>獵豹 <img alt="獵豹" src="png3/cheetah.png" height="25" /></h2>
+            <span class="conditions-code">('條件03', '條件05', '條件09', '條件10','條件22', '條件60', '條件46', '條件14')</span>
+            <ul>
+                <li>5 SMA > 30 SMA</li>
+                <li>營業利益創近4季新高</li>
+                <li>近10日內有1日股價創120日新高</li>
+                <li>營業毛利成長率較2季前高</li>
+                <li>過去120天上漲天數 > 下跌天數</li>
+                <li>GPA(毛利/資產)前10%</li>
+                <li>近營收3個月ma > 營收12個月ma</li>
+                <li>近四季營運現金流大於經常稅後淨利</li>
+            </ul>
+        </div>
+
+        <!-- 金牛 -->
+        <div class="card bull">
+            <h2>金牛 <img alt="金牛" src="png3/taurus.png" height="25" /></h2>
+            <span class="conditions-code">('條件03', '條件20', '條件27','條件28', '條件33', '條件39', '條件112')</span>
+            <ul>
+                <li>5 SMA > 30 SMA</li>
+                <li>ROE稅後_連1季成長</li>
+                <li>通道狹窄</li>
+                <li>近10日內有1日以上的股價創前200日新高</li>
+                <li>營業毛利率創8季新高</li>
+                <li>營業利益率創近8季新高</li>
+                <li>取得無形資產_rolling_mean_40-under_than_industry_percentile_80</li>
+                <li>取得無形資產特殊轉換後的因子</li>
+            </ul>
+        </div>
+
+        <!-- 招財貓 -->
+        <div class="card cat">
+            <h2>招財貓 <img alt="招財貓" src="png3/maneki-neko.png" height="25" /></h2>
+            <span class="conditions-code">('條件03', '條件04','條件05', '條件06', '條件09', '條件10', '條件14', '條件16','條件34', '條件46',
+                '條件115')</span>
+            <ul>
+                <li>5 SMA > 30 SMA</li>
+                <li>稅後淨利率近5年平均 > 5%</li>
+                <li>營業利益創近4季新高</li>
+                <li>上個月營收大於0</li>
+                <li>近10日內有1日股價創120日新高</li>
+                <li>營業毛利成長率較2季前高</li>
+                <li>近四季營運現金流大於經常稅後淨利</li>
+                <li>稅後淨利率前10%</li>
+                <li>營業毛利率較前2季前高</li>
+                <li>近營收3個月ma > 營收12個月ma</li>
+                <li>近四季稅後 ROE 為正數</li>
+            </ul>
+        </div>
+
+        <!-- 貓頭鷹 -->
+        <div class="card owl">
+            <h2>貓頭鷹 <img alt="貓頭鷹" src="png3/owl.png" height="25" /></h2>
+            <span class="conditions-code">('條件16', '條件45', '條件46', '條件61', '條件68', '條件76')</span>
+            <ul>
+                <li>稅後淨利率前10%</li>
+                <li>自由現金流 > 0</li>
+                <li>近營收3個月ma > 營收12個月ma</li>
+                <li>(研究發展費用率/管理費用率)的比率前10%</li>
+                <li>成交量在過去一年中位於前30%</li>
+                <li>按攤銷後成本衡量之金融資產_流動_rolling_std_40-above_than_industry_percentile_70</li>
+                <li>按攤銷後成本衡量之金融資產_流動特殊轉換後的因子</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>
