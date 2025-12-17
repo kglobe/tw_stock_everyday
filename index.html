@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 
 <html lang="zh-TW">
-
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MW&amp;K</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MW&amp;K</title>
+<style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -14,7 +13,6 @@
             height: 100vh;
             overflow: hidden;
         }
-
         .sidebar {
             width: 200px;
             background-color: #f4f4f4;
@@ -29,15 +27,12 @@
             transition: transform 0.3s ease;
             z-index: 1000;
         }
-
         .sidebar.closed {
             transform: translateX(-100%);
         }
-
         .sidebar .menu {
             flex-grow: 1;
         }
-
         .sidebar #updateTime {
             padding: 10px;
             font-size: 14px;
@@ -46,9 +41,7 @@
             margin-top: 10px;
             margin-bottom: 20px;
         }
-
-        .sidebar a,
-        .sidebar .toggle-btn {
+        .sidebar a, .sidebar .toggle-btn {
             display: flex;
             align-items: center;
             padding: 10px;
@@ -57,41 +50,33 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         .sidebar a img {
             width: 20px;
             height: 20px;
             margin-right: 10px;
         }
-
-        .sidebar a:hover,
-        .sidebar .toggle-btn:hover {
+        .sidebar a:hover, .sidebar .toggle-btn:hover {
             background-color: #ddd;
         }
-
         .sidebar a.active {
             background-color: #4a4f54;
             color: white;
             border-radius: 5px;
         }
-
         .content {
             flex: 1;
             padding: 20px;
             margin-left: 240px;
             transition: margin-left 0.3s ease;
         }
-
         .content.full {
             margin-left: 0;
         }
-
         iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
-
         .toggle-btn-outside {
             position: fixed;
             top: 10px;
@@ -108,77 +93,68 @@
             text-align: center;
             line-height: 40px;
         }
-
-        .sidebar.closed+.content .toggle-btn-outside {
+        .sidebar.closed + .content .toggle-btn-outside {
             display: block;
         }
-
         .toggle-btn-outside:hover {
             background-color: #ddd;
         }
-
         @media (max-width: 768px) {
             .sidebar {
                 width: 150px;
             }
-
             .content {
                 margin-left: 0;
             }
-
-            .sidebar:not(.closed)+.content {
+            .sidebar:not(.closed) + .content {
                 margin-left: 170px;
             }
         }
     </style>
 </head>
-
 <body>
-    <div class="sidebar" id="sidebar">
-        <div class="toggle-btn" onclick="toggleSidebar()">☰</div>
-        <div class="menu">
-            <a onclick="changePage('青龍.html', this)"><img alt="青龍" src="png3/dragon.png" />青龍</a>
-            <a onclick="changePage('朱雀.html', this)"><img alt="朱雀" src="png3/bird.png" />朱雀</a>
-            <a onclick="changePage('白虎.html', this)"><img alt="白虎" src="png3/tiger.png" />白虎</a>
-            <a onclick="changePage('玄武.html', this)"><img alt="玄武" src="png3/turtle.png" />玄武</a>
-            <a onclick="changePage('獵豹.html', this)"><img alt="獵豹" src="png3/cheetah.png" />獵豹</a>
-            <a onclick="changePage('金牛.html', this)"><img alt="金牛" src="png3/taurus.png" />金牛</a>
-            <a onclick="changePage('招財貓.html', this)"><img alt="招財貓" src="png3/maneki-neko.png" />招財貓</a>
-            <a onclick="changePage('貓頭鷹.html', this)"><img alt="貓頭鷹" src="png3/owl.png" />貓頭鷹</a>
-            <a onclick="changePage('conditions.html', this)"><span
-                    style="font-size:20px; margin-right:10px;">📋</span>策略條件</a>
-        </div>
-        <div id="updateTime">最後更新: <span id="time">2025/12/17 13:00</span></div>
-    </div>
-    <div class="content" id="content">
-        <div class="toggle-btn-outside" onclick="toggleSidebar()">☰</div>
-        <iframe id="contentFrame" src="青龍.html"></iframe>
-    </div>
-    <script>
-        function changePage(pageUrl, element) {
-            document.getElementById('contentFrame').src = pageUrl;
-            document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-            element.classList.add('active');
-            if (window.innerWidth <= 768) {
-                toggleSidebar();
-            }
+<div class="sidebar" id="sidebar">
+<div class="toggle-btn" onclick="toggleSidebar()">☰</div>
+<div class="menu">
+<a onclick="changePage('青龍.html', this)"><img alt="青龍" src="png3/dragon.png"/>青龍</a>
+<a onclick="changePage('朱雀.html', this)"><img alt="朱雀" src="png3/bird.png"/>朱雀</a>
+<a onclick="changePage('白虎.html', this)"><img alt="白虎" src="png3/tiger.png"/>白虎</a>
+<a onclick="changePage('玄武.html', this)"><img alt="玄武" src="png3/turtle.png"/>玄武</a>
+<a onclick="changePage('獵豹.html', this)"><img alt="獵豹" src="png3/cheetah.png"/>獵豹</a>
+<a onclick="changePage('金牛.html', this)"><img alt="金牛" src="png3/taurus.png"/>金牛</a>
+<a onclick="changePage('招財貓.html', this)"><img alt="招財貓" src="png3/maneki-neko.png"/>招財貓</a>
+<a onclick="changePage('貓頭鷹.html', this)"><img alt="貓頭鷹" src="png3/owl.png"/>貓頭鷹</a>
+</div>
+<div id="updateTime">最後更新: <span id="time">2025/06/11 20:47</span></div>
+</div>
+<div class="content" id="content">
+<div class="toggle-btn-outside" onclick="toggleSidebar()">☰</div>
+<iframe id="contentFrame" src="青龍.html"></iframe>
+</div>
+<script>
+    function changePage(pageUrl, element) {
+        document.getElementById('contentFrame').src = pageUrl;
+        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+        element.classList.add('active');
+        if (window.innerWidth <= 768) {
+            toggleSidebar();
         }
+    }
 
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const content = document.getElementById('content');
-            sidebar.classList.toggle('closed');
-            content.classList.toggle('full');
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+        sidebar.classList.toggle('closed');
+        content.classList.toggle('full');
+    }
+
+    // 頁面加載時設定初始選項
+    document.addEventListener("DOMContentLoaded", function() {
+        const initialLink = document.querySelector(".sidebar a");
+        if (initialLink) {
+            initialLink.classList.add("active");
         }
-
-        // 頁面加載時設定初始選項
-        document.addEventListener("DOMContentLoaded", function () {
-            const initialLink = document.querySelector(".sidebar a");
-            if (initialLink) {
-                initialLink.classList.add("active");
-            }
-        });
-    </script>
+    });
+</script>
 </body>
-
 </html>
